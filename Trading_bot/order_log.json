@@ -1,0 +1,1187 @@
+[
+  {
+    "timestamp": "2025-11-26T16:20:12.216081",
+    "action": "buy",
+    "symbol": "REGN",
+    "quantity": 2,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 834.61,
+    "stop_loss": 771.62,
+    "status": "error",
+    "details": {
+      "error": "Object of type UUID is not JSON serializable"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T16:20:18.118659",
+    "action": "buy",
+    "symbol": "REGN",
+    "quantity": 2,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 834.61,
+    "stop_loss": 771.62,
+    "status": "error",
+    "details": {
+      "error": "Object of type UUID is not JSON serializable"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T16:20:24.074474",
+    "action": "buy",
+    "symbol": "REGN",
+    "quantity": 2,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 834.61,
+    "stop_loss": 771.62,
+    "status": "error",
+    "details": {
+      "error": "Object of type UUID is not JSON serializable"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T16:20:29.963261",
+    "action": "buy",
+    "symbol": "REGN",
+    "quantity": 2,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 834.61,
+    "stop_loss": 771.62,
+    "status": "error",
+    "details": {
+      "error": "Object of type UUID is not JSON serializable"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T16:30:14.603133",
+    "action": "buy",
+    "symbol": "AAPL",
+    "quantity": 13,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 159,
+    "stop_loss": 147,
+    "status": "error",
+    "details": {
+      "error": "{\"base_price\":\"277.8399\",\"code\":42210000,\"message\":\"take_profit.limit_price must be \\u003e= base_price + 0.01\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T16:35:16.115773",
+    "action": "buy",
+    "symbol": "PFE",
+    "quantity": 77,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 27.3,
+    "stop_loss": 25.24,
+    "status": "success",
+    "details": {
+      "order_id": "e44f5da1-b116-4c9e-95c3-fd863360b220",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T17:05:18.199411",
+    "action": "buy",
+    "symbol": "CSCO",
+    "quantity": 26,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 80.7,
+    "stop_loss": 74.61,
+    "status": "success",
+    "details": {
+      "order_id": "58582ffc-86ef-4b90-bf43-a59b74cc70a8",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T17:25:02.011042",
+    "action": "buy",
+    "symbol": "CPRT",
+    "quantity": 51,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": 41.48,
+    "stop_loss": 38.35,
+    "status": "success",
+    "details": {
+      "order_id": "224fdc1b-c9c9-4b60-8279-5670ee32b409",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T17:36:02.059093",
+    "action": "sell",
+    "symbol": "AARD",
+    "quantity": 10,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":42210000,\"message\":\"asset \\\"AARD\\\" cannot be sold short\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T17:36:07.968459",
+    "action": "sell",
+    "symbol": "AARD",
+    "quantity": 10,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":42210000,\"message\":\"asset \\\"AARD\\\" cannot be sold short\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T17:36:13.910483",
+    "action": "sell",
+    "symbol": "AARD",
+    "quantity": 10,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":42210000,\"message\":\"asset \\\"AARD\\\" cannot be sold short\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T17:36:19.806872",
+    "action": "sell",
+    "symbol": "AARD",
+    "quantity": 10,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":42210000,\"message\":\"asset \\\"AARD\\\" cannot be sold short\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:05:56.233363",
+    "action": "buy",
+    "symbol": "MA",
+    "quantity": 3,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 537.35,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:06:02.912197",
+    "action": "buy",
+    "symbol": "MA",
+    "quantity": 3,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 537.35,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:06:08.810711",
+    "action": "buy",
+    "symbol": "MA",
+    "quantity": 3,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 537.35,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:06:14.696286",
+    "action": "buy",
+    "symbol": "MA",
+    "quantity": 3,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 537.35,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:10:02.820365",
+    "action": "buy",
+    "symbol": "ADP",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 251.06,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:10:08.755675",
+    "action": "buy",
+    "symbol": "ADP",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 251.06,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:10:14.650277",
+    "action": "buy",
+    "symbol": "ADP",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 251.06,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T18:10:20.536267",
+    "action": "buy",
+    "symbol": "ADP",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 251.06,
+    "status": "error",
+    "details": {
+      "error": "{\"code\":40010001,\"message\":\"bracket orders require take_profit.limit_price\"}"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T19:05:03.826372",
+    "action": "buy",
+    "symbol": "CRSP",
+    "quantity": 37,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 52.21,
+    "status": "success",
+    "details": {
+      "order_id": "32ed4e5b-4365-4659-8173-ac742002a858",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T19:35:49.185932",
+    "action": "buy",
+    "symbol": "GRAB",
+    "quantity": 375,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 5.22,
+    "status": "success",
+    "details": {
+      "order_id": "e8050ea8-b289-480a-9815-8c5f08937876",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T19:50:00.926458",
+    "action": "buy",
+    "symbol": "MA",
+    "quantity": 3,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 536.97,
+    "status": "success",
+    "details": {
+      "order_id": "ff6c1305-cdd6-4ce7-9420-48c9faf095a5",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T20:25:28.299917",
+    "action": "buy",
+    "symbol": "GD",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 334.64,
+    "status": "success",
+    "details": {
+      "order_id": "20163112-fd74-4aed-8f49-2c8b36132525",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T20:50:04.254724",
+    "action": "buy",
+    "symbol": "DHR",
+    "quantity": 8,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 224.21,
+    "status": "success",
+    "details": {
+      "order_id": "878fd54b-1c37-49fe-aa2c-7319e990ce30",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T21:05:19.433400",
+    "action": "buy",
+    "symbol": "IDXX",
+    "quantity": 2,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 742.52,
+    "status": "success",
+    "details": {
+      "order_id": "f595feac-87c0-4650-a80d-a8fb760f75ea",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T21:35:01.295695",
+    "action": "sell",
+    "symbol": "MSTR",
+    "quantity": 11,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "b2b80df2-cfe6-469b-bca7-6c2cab28b05c",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T21:40:03.758054",
+    "action": "buy",
+    "symbol": "INTU",
+    "quantity": 3,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 617.93,
+    "status": "success",
+    "details": {
+      "order_id": "bf0ad6bd-206d-4549-a01c-729d82a75a8d",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T21:50:01.672118",
+    "action": "buy",
+    "symbol": "GOOG",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 313.91,
+    "status": "success",
+    "details": {
+      "order_id": "7ff89b4f-1379-4e27-8120-25a8efe72272",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T21:50:03.468514",
+    "action": "buy",
+    "symbol": "TEAM",
+    "quantity": 13,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 145.57,
+    "status": "success",
+    "details": {
+      "order_id": "fe94c48b-f2c8-4527-ba1a-ace78cf3f3cc",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-11-26T22:00:08.555483",
+    "action": "buy",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 364.83,
+    "status": "success",
+    "details": {
+      "order_id": "6bbe1367-e40d-40f8-a8d5-d5f7051be5ac",
+      "status": "accepted"
+    }
+  },
+  {
+    "timestamp": "2025-11-28T19:00:14.594490",
+    "action": "buy",
+    "symbol": "KO",
+    "quantity": 27,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 71.66,
+    "status": "success",
+    "details": {
+      "order_id": "f3904e3f-f513-485e-a824-71d87bc2de3c",
+      "status": "accepted"
+    }
+  },
+  {
+    "timestamp": "2025-12-01T17:55:04.292107",
+    "action": "sell",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "b8829c42-4cf1-409b-a053-bfc9f8cf8d00",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T16:45:20.980229",
+    "action": "buy",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 324.05,
+    "status": "success",
+    "details": {
+      "order_id": "69340a23-9104-4e01-9870-d5e755980cb4",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:05:05.792558",
+    "action": "buy",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 363.31,
+    "status": "success",
+    "details": {
+      "order_id": "3050aa6a-fa6b-42c5-9869-fce863895afd",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:05:37.160655",
+    "action": "buy",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 268.99,
+    "status": "success",
+    "details": {
+      "order_id": "cae0815d-fc4f-4dd0-b34c-cdf6be053cea",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:15:41.868176",
+    "action": "sell",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "287d1abb-79fc-4678-aab0-069d4c438908",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:30:09.042694",
+    "action": "buy",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 96.05,
+    "status": "success",
+    "details": {
+      "order_id": "ce9f2e4a-d05f-45b2-a03c-7c0638c965e4",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:30:16.232130",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4c010890-4a4b-4215-b679-7638753c644c\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:30:22.225428",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4c010890-4a4b-4215-b679-7638753c644c\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:30:28.167305",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4c010890-4a4b-4215-b679-7638753c644c\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:30:34.072143",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4c010890-4a4b-4215-b679-7638753c644c\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:40:50.975544",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"e6740262-3127-4254-8d4e-f4c6a23b7018\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:40:56.926769",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"e6740262-3127-4254-8d4e-f4c6a23b7018\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:41:02.820897",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"e6740262-3127-4254-8d4e-f4c6a23b7018\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:41:08.721047",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"e6740262-3127-4254-8d4e-f4c6a23b7018\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:45:39.257059",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"3ada5106-2469-415c-85b3-dbc963dee3aa\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:45:45.143475",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"3ada5106-2469-415c-85b3-dbc963dee3aa\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:45:51.066453",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"3ada5106-2469-415c-85b3-dbc963dee3aa\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-02T17:45:56.945907",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"3ada5106-2469-415c-85b3-dbc963dee3aa\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T17:25:10.348533",
+    "action": "buy",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 320.95,
+    "status": "success",
+    "details": {
+      "order_id": "dfa8c4f5-7238-4fb7-afdf-ad4e4a3695c9",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T17:40:05.552565",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4d928082-ba65-4b6d-b6a0-5af8eb4c41bc\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T17:40:11.569162",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4d928082-ba65-4b6d-b6a0-5af8eb4c41bc\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T17:40:17.454670",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4d928082-ba65-4b6d-b6a0-5af8eb4c41bc\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T17:40:23.399765",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"6\",\"held_for_orders\":\"6\",\"message\":\"insufficient qty available for order (requested: 6, available: 0)\",\"related_orders\":[\"4d928082-ba65-4b6d-b6a0-5af8eb4c41bc\"],\"symbol\":\"V\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T18:00:54.246416",
+    "action": "sell",
+    "symbol": "PODD",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "f01c693b-a189-46e3-b686-fdfb286487e7",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T21:30:12.911717",
+    "action": "buy",
+    "symbol": "KO",
+    "quantity": 28,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 68.64,
+    "status": "success",
+    "details": {
+      "order_id": "ec6f8aef-82bc-4cec-a90d-62639ecb8228",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T21:40:14.004738",
+    "action": "buy",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 259.24,
+    "status": "success",
+    "details": {
+      "order_id": "51892240-4dc2-4035-8f49-29ecd816e7e6",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T21:45:07.426650",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"d87733a2-393e-4eab-9ac0-7b383fc3a1cc\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T21:45:13.403197",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"d87733a2-393e-4eab-9ac0-7b383fc3a1cc\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T21:45:19.282839",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"d87733a2-393e-4eab-9ac0-7b383fc3a1cc\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T21:45:25.207265",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"7\",\"held_for_orders\":\"7\",\"message\":\"insufficient qty available for order (requested: 7, available: 0)\",\"related_orders\":[\"d87733a2-393e-4eab-9ac0-7b383fc3a1cc\"],\"symbol\":\"CI\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T21:55:01.815225",
+    "action": "buy",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 320.1,
+    "status": "success",
+    "details": {
+      "order_id": "ceaa4af5-b47a-4d3f-af66-256bded4ec93",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T22:01:04.962751",
+    "action": "sell",
+    "symbol": "APO",
+    "quantity": 13,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "bc0833f2-9989-40e2-9946-356ac7f94bd3",
+      "status": "accepted"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T15:55:47.446328",
+    "action": "buy",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 343.49,
+    "status": "success",
+    "details": {
+      "order_id": "c9240340-9fe4-4373-95a9-bdff00e5dfbb",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T16:05:07.123661",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "a39f152a-6b91-497b-82b8-654c141b02d0",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T16:20:22.896579",
+    "action": "sell",
+    "symbol": "KO",
+    "quantity": 28,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "2be6a305-61bb-405a-b0ea-9b66a75c2339",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T16:50:16.056382",
+    "action": "buy",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 257.97,
+    "status": "success",
+    "details": {
+      "order_id": "95f45187-a25b-464d-9d2e-017b29347ef2",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T17:00:16.646548",
+    "action": "sell",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"5\",\"held_for_orders\":\"5\",\"message\":\"insufficient qty available for order (requested: 5, available: 0)\",\"related_orders\":[\"c6dd7b47-61a7-4390-b086-73222b5c0950\"],\"symbol\":\"SYK\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T17:00:22.768457",
+    "action": "sell",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"5\",\"held_for_orders\":\"5\",\"message\":\"insufficient qty available for order (requested: 5, available: 0)\",\"related_orders\":[\"c6dd7b47-61a7-4390-b086-73222b5c0950\"],\"symbol\":\"SYK\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T17:00:28.705352",
+    "action": "sell",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"5\",\"held_for_orders\":\"5\",\"message\":\"insufficient qty available for order (requested: 5, available: 0)\",\"related_orders\":[\"c6dd7b47-61a7-4390-b086-73222b5c0950\"],\"symbol\":\"SYK\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T17:00:34.622252",
+    "action": "sell",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"5\",\"held_for_orders\":\"5\",\"message\":\"insufficient qty available for order (requested: 5, available: 0)\",\"related_orders\":[\"c6dd7b47-61a7-4390-b086-73222b5c0950\"],\"symbol\":\"SYK\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T17:35:08.163177",
+    "action": "sell",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "ad0a4609-b6cc-4c1c-af97-8160126af4fb",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T18:20:12.412298",
+    "action": "buy",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 94.08,
+    "status": "success",
+    "details": {
+      "order_id": "de2fc1aa-d418-4aed-a58e-3d8110143c5e",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T19:30:12.079385",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"b1de3e4e-1dfd-4b26-99da-b096630a561e\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T19:30:17.974737",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"b1de3e4e-1dfd-4b26-99da-b096630a561e\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T19:30:23.850591",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"b1de3e4e-1dfd-4b26-99da-b096630a561e\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T19:30:29.727527",
+    "action": "sell",
+    "symbol": "ED",
+    "quantity": 20,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "error",
+    "details": {
+      "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"20\",\"held_for_orders\":\"20\",\"message\":\"insufficient qty available for order (requested: 20, available: 0)\",\"related_orders\":[\"b1de3e4e-1dfd-4b26-99da-b096630a561e\"],\"symbol\":\"ED\"}"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T20:40:08.013682",
+    "action": "buy",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 320.88,
+    "status": "success",
+    "details": {
+      "order_id": "3c213ede-a8c2-4497-bd79-f27ec21928bb",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T20:40:08.502232",
+    "action": "buy",
+    "symbol": "SYK",
+    "quantity": 5,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 345.05,
+    "status": "success",
+    "details": {
+      "order_id": "7d7b8886-d917-4e39-b88e-c8d8f28c4ccd",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T20:40:10.820341",
+    "action": "buy",
+    "symbol": "CI",
+    "quantity": 7,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": 257.56,
+    "status": "success",
+    "details": {
+      "order_id": "f723059b-330c-44f8-b83e-549d99b48579",
+      "status": "pending_new"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T20:45:01.686223",
+    "action": "sell",
+    "symbol": "V",
+    "quantity": 6,
+    "order_type": "market",
+    "limit_price": null,
+    "take_profit": null,
+    "stop_loss": null,
+    "status": "success",
+    "details": {
+      "order_id": "4162c50b-19bc-4ee8-8747-6726dc50d245",
+      "status": "pending_new"
+    }
+  }
+]

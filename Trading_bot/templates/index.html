@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot de Trading - TradingView a Alpaca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 15px;
+            padding: 15px;
+            height: 100vh;
+        }
+        
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: white;
+            padding: 15px;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .column {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .column h2 {
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+            font-size: 1.3em;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 8px 15px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #888;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .tab:hover {
+            color: #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .status-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .status-card h3 {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .status-card p {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-active {
+            background: #28a745;
+            box-shadow: 0 0 10px #28a745;
+        }
+        
+        .status-inactive {
+            background: #dc3545;
+        }
+        
+        .market-status {
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .market-open {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+        
+        .market-closed {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        
+        .copy-btn:hover {
+            background: #5568d3;
+        }
+        
+        .example-box {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .example-box.highlight-buy {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-color: #28a745;
+        }
+        
+        .example-box.highlight-sell {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-color: #dc3545;
+        }
+        
+        .example-box h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        
+        .example-box p {
+            color: #666;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+        
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        
+        .divider {
+            border-top: 2px dashed #e0e0e0;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .badge-new {
+            background: #28a745;
+            color: white;
+        }
+        
+        /* Estilos para Order Log */
+        .order-log-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+        
+        .order-log-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+        }
+        
+        .order-item {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .order-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .order-item.order-success {
+            border-left-color: #28a745;
+        }
+        
+        .order-item.order-error {
+            border-left-color: #dc3545;
+        }
+        
+        .order-item.order-pending {
+            border-left-color: #ffc107;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .order-action {
+            font-weight: 700;
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+        
+        .order-action.buy {
+            color: #28a745;
+        }
+        
+        .order-action.sell {
+            color: #dc3545;
+        }
+        
+        .order-timestamp {
+            font-size: 0.75em;
+            color: #888;
+        }
+        
+        .order-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            font-size: 0.85em;
+            color: #555;
+        }
+        
+        .order-detail {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .order-detail-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .order-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .order-status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .order-status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .order-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-recommended {
+            background: #667eea;
+            color: white;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        #response {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-size: 0.9em;
+        }
+        
+        #response.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        #response.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🤖 Bot de Trading Automático</h1>
+            <p>TradingView → Webhook → Alpaca | Gestión de Capital Inteligente</p>
+        </div>
+
+        <!-- Columna Izquierda: Configuración y Estado -->
+        <div class="column">
+            <h2>⚙️ Configuración y Monitoreo</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab(event, 'config')">⚙️ Configuración</button>
+                <button class="tab" onclick="switchTab(event, 'status')">📊 Estado</button>
+                <button class="tab" onclick="switchTab(event, 'market')">📈 Mercado</button>
+                <button class="tab" onclick="switchTab(event, 'orders')">📋 Historial</button>
+            </div>
+
+            <!-- Tab: Configuración -->
+            <div id="config" class="tab-content active">
+                <form id="configForm">
+                    <div class="form-group">
+                        <label>API Key de Alpaca:</label>
+                        <input type="text" id="api_key" name="api_key" value="{{ config.get('api_key', '') }}" placeholder="PK...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>API Secret de Alpaca:</label>
+                        <input type="password" id="api_secret" name="api_secret" value="{{ config.get('api_secret', '') }}" placeholder="...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Modo de Trading:</label>
+                        <select id="paper_trading" name="paper_trading">
+                            <option value="true" {% if config.get('paper_trading', 'true') == 'true' %}selected{% endif %}>Paper Trading (Simulación)</option>
+                            <option value="false" {% if config.get('paper_trading', 'true') == 'false' %}selected{% endif %}>Real Trading (Dinero Real)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Secreto del Webhook:</label>
+                        <input type="text" id="webhook_secret" name="webhook_secret" value="{{ config.get('webhook_secret', '') }}" placeholder="mi_secreto_123">
+                        <small style="color: #666; font-size: 0.85em;">Debe coincidir con el secreto en tu código Pine Script</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">💾 Guardar Configuración</button>
+                </form>
+                
+                <div class="info-box" style="margin-top: 15px;">
+                    <strong>💡 Tip:</strong> Siempre prueba primero en Paper Trading antes de usar dinero real.
+                </div>
+            </div>
+
+            <!-- Tab: Estado -->
+            <div id="status" class="tab-content">
+                <div class="status-card">
+                    <h3>Estado del Bot</h3>
+                    <p><span class="status-indicator status-active"></span>Activo y Escuchando</p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>Conexión con Alpaca</h3>
+                    <p id="alpaca-status">Verificando...</p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>Información de la Cuenta</h3>
+                    <p id="account-info">Cargando...</p>
+                </div>
+                
+                <button onclick="refreshStatus()" class="btn btn-secondary" style="width: 100%;">🔄 Actualizar Estado</button>
+                
+                <button onclick="testConnection()" class="btn btn-primary" style="width: 100%; margin-top: 10px;">🧪 Probar Conexión</button>
+            </div>
+
+            <!-- Tab: Mercado -->
+            <div id="market" class="tab-content">
+                <div id="market-status-display" class="market-status market-closed">
+                    🔴 MERCADO CERRADO
+                </div>
+                
+                <div class="status-card">
+                    <h3>⏰ Horario Regular</h3>
+                    <p>09:30 - 16:00 ET (Hora del Este)</p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>📅 Días de Trading</h3>
+                    <p>Lunes a Viernes (excepto festivos de EE.UU.)</p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>🔔 Próximo Evento</h3>
+                    <p id="next-event">Calculando...</p>
+                </div>
+                
+                <div class="info-box">
+                    <strong>ℹ️ Nota:</strong> Las órdenes enviadas cuando el mercado está cerrado se ejecutarán en la próxima apertura.
+                </div>
+            </div>
+
+            <!-- Tab: Historial de Órdenes -->
+            <div id="orders" class="tab-content">
+                <div class="status-card">
+                    <h3>📋 Registro de Órdenes</h3>
+                    <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                        Últimas 100 órdenes recibidas y procesadas
+                    </p>
+                </div>
+                
+                <div class="order-log-container" id="orderLogContainer">
+                    <div class="order-log-empty">
+                        <p>📄 No hay órdenes registradas aún</p>
+                        <p style="font-size: 0.85em; color: #888; margin-top: 5px;">Las órdenes aparecerán aquí cuando se reciban webhooks de TradingView</p>
+                    </div>
+                </div>
+                
+                <button onclick="refreshOrders()" class="btn btn-secondary" style="width: 100%; margin-top: 10px;">🔄 Actualizar Historial</button>
+                
+                <div class="info-box" style="margin-top: 10px;">
+                    <strong>💡 Tip:</strong> El historial se actualiza automáticamente cada 10 segundos.
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Derecha: Webhook y Ejemplos -->
+        <div class="column">
+            <h2>📡 Webhook y Ejemplos</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab(event, 'webhook')">📡 Webhook</button>
+                <button class="tab" onclick="switchTab(event, 'examples')">📚 Ejemplos<span class="badge badge-new">NUEVO</span></button>
+                <button class="tab" onclick="switchTab(event, 'test')">🧪 Prueba</button>
+                <button class="tab" onclick="switchTab(event, 'docs')">📖 Docs</button>
+            </div>
+
+            <!-- Tab: Webhook -->
+            <div id="webhook" class="tab-content active">
+                <div class="success-box">
+                    <strong>✅ URL del Webhook:</strong>
+                    <div class="code-block" style="margin-top: 10px;">
+                        <button class="copy-btn" onclick="copyToClipboard('http://localhost:5000/webhook')">📋 Copiar</button>
+                        http://localhost:5000/webhook
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Importante:</strong> Usa ngrok para exponer este webhook a internet y poder recibir alertas de TradingView.
+                </div>
+                
+                <h3 style="margin: 20px 0 10px 0; color: #333; font-size: 1.1em;">📋 Formato del JSON</h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    El JSON se genera automáticamente desde tu código Pine Script. <strong>NO</strong> necesitas escribirlo manualmente en TradingView.
+                </p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode('json-format')">📋 Copiar</button>
+                    <pre id="json-format">{
+  "secret": "tu_secreto_webhook",
+  "action": "buy",
+  "symbol": "AAPL",
+  "quantity": 13,
+  "order_type": "market",
+  "take_profit": 159.00,
+  "stop_loss": 147.00
+}</pre>
+                </div>
+                
+                <div class="info-box">
+                    <strong>💡 Nuevo:</strong> La cantidad se calcula automáticamente basándose en el 20% de tu capital (configurable en Pine Script).
+                </div>
+            </div>
+
+            <!-- Tab: Ejemplos -->
+            <div id="examples" class="tab-content">
+                <h3 style="color: #333; margin-bottom: 15px;">⭐ Estrategia Supertrend + EMA9 (Ratio 3:1)</h3>
+                
+                <!-- Ejemplo BUY -->
+                <div class="example-box highlight-buy">
+                    <h4>🟢 COMPRA con Gestión de Capital (20%)<span class="badge badge-recommended">RECOMENDADO</span></h4>
+                    <p><strong>Uso:</strong> Señal BUY del indicador Supertrend + EMA9</p>
+                    <p><strong>Características:</strong></p>
+                    <ul style="margin-left: 20px; font-size: 0.85em; color: #666;">
+                        <li>Cantidad calculada automáticamente (20% del capital)</li>
+                        <li>Take Profit: +6% (automático)</li>
+                        <li>Stop Loss: -2% (automático)</li>
+                        <li>Ratio: 3:1</li>
+                    </ul>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('buy-capital')">📋 Copiar</button>
+                        <pre id="buy-capital">// Este JSON se genera automáticamente en Pine Script
+{
+  "secret": "tu_secreto_webhook",
+  "action": "buy",
+  "symbol": "AAPL",
+  "quantity": 13,  // Calculado: (Capital × 20%) / Precio
+  "order_type": "market",
+  "take_profit": 159.00,  // +6%
+  "stop_loss": 147.00     // -2%
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Ejemplo SELL -->
+                <div class="example-box highlight-sell">
+                    <h4>🔴 VENTA (Cerrar Posición)</h4>
+                    <p><strong>Uso:</strong> Señal SELL del indicador Supertrend + EMA9</p>
+                    <p><strong>Características:</strong></p>
+                    <ul style="margin-left: 20px; font-size: 0.85em; color: #666;">
+                        <li>Cierra la posición larga abierta</li>
+                        <li>Sin TP/SL (es una salida)</li>
+                        <li>Cantidad igual a la compra</li>
+                    </ul>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode('sell-close')">📋 Copiar</button>
+                        <pre id="sell-close">// Este JSON se genera automáticamente en Pine Script
+{
+  "secret": "tu_secreto_webhook",
+  "action": "sell",
+  "symbol": "AAPL",
+  "quantity": 13,
+  "order_type": "market"
+}</pre>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <h3 style="color: #333; margin-bottom: 15px;">📊 Ejemplo Numérico</h3>
+                <div class="info-box">
+                    <strong>Escenario:</strong> Capital $10,000, AAPL a $150
+                    <ul style="margin-left: 20px; margin-top: 10px; font-size: 0.9em;">
+                        <li>Capital a usar: $10,000 × 20% = <strong>$2,000</strong></li>
+                        <li>Cantidad: $2,000 / $150 = <strong>13 acciones</strong></li>
+                        <li>Inversión real: $1,950 (19.5%)</li>
+                        <li>Take Profit: $150 × 1.06 = <strong>$159</strong> (+$9/acción)</li>
+                        <li>Stop Loss: $150 × 0.98 = <strong>$147</strong> (-$3/acción)</li>
+                        <li>Ganancia potencial: 13 × $9 = <strong>$117</strong></li>
+                        <li>Pérdida máxima: 13 × $3 = <strong>$39</strong></li>
+                        <li>Ratio: $117 / $39 = <strong>3:1</strong> ✅</li>
+                    </ul>
+                </div>
+
+                <div class="divider"></div>
+
+                <h3 style="color: #333; margin-bottom: 15px;">🔧 Configuración en Pine Script</h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    Añade estos inputs al inicio de tu código para configurar la gestión de capital:
+                </p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode('pine-inputs')">📋 Copiar</button>
+                    <pre id="pine-inputs">// Inputs de gestión de capital
+capital = input.float(10000, title = "Capital Total ($)", 
+  group = "Capital Management")
+capital_percent = input.float(20.0, title = "% Capital por Operación", 
+  minval = 1, maxval = 100, group = "Capital Management")
+
+// Cálculo de cantidad
+capital_to_use = capital * (capital_percent / 100)
+quantity = math.floor(capital_to_use / close)
+quantity := math.max(quantity, 1)</pre>
+                </div>
+
+                <div class="warning-box" style="margin-top: 15px;">
+                    <strong>⚠️ Recuerda:</strong> Actualiza el valor de "Capital Total" en la configuración del indicador cuando tu capital cambie.
+                </div>
+            </div>
+
+            <!-- Tab: Prueba -->
+            <div id="test" class="tab-content">
+                <h3 style="color: #333; margin-bottom: 10px;">🧪 Probar Webhook Manualmente</h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    Usa esta herramienta para probar tu JSON antes de configurarlo en TradingView.
+                </p>
+                
+                <div class="form-group">
+                    <label>JSON del Webhook:</label>
+                    <textarea id="test-json" placeholder='{"secret":"tu_secreto","action":"buy","symbol":"AAPL","quantity":10,"order_type":"market","take_profit":159.00,"stop_loss":147.00}'></textarea>
+                </div>
+                
+                <div class="btn-group">
+                    <button onclick="testWebhook()" class="btn btn-primary">📤 Enviar Webhook de Prueba</button>
+                    <button onclick="loadExample()" class="btn btn-secondary">📋 Cargar Ejemplo</button>
+                </div>
+                
+                <div id="response"></div>
+                
+                <div class="info-box" style="margin-top: 15px;">
+                    <strong>💡 Tip:</strong> Si ves "✅ ¡Webhook Recibido Correctamente!", tu JSON es válido y puedes usarlo en TradingView.
+                </div>
+            </div>
+
+            <!-- Tab: Documentación -->
+            <div id="docs" class="tab-content">
+                <h3 style="color: #333; margin-bottom: 15px;">📖 Documentación Rápida</h3>
+                
+                <div class="status-card">
+                    <h3>🎯 Gestión de Capital (20%)</h3>
+                    <p style="font-size: 0.9em; font-weight: normal; color: #666; margin-top: 10px;">
+                        El bot calcula automáticamente cuántas acciones comprar basándose en un porcentaje de tu capital.
+                        <br><br>
+                        <strong>Fórmula:</strong> Cantidad = (Capital × 20%) / Precio
+                        <br><br>
+                        <strong>Ventajas:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Riesgo consistente en todas las operaciones</li>
+                            <li>Se adapta al precio de cada acción</li>
+                            <li>Permite hasta 5 posiciones simultáneas</li>
+                        </ul>
+                    </p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>📊 Ratio Riesgo-Beneficio 3:1</h3>
+                    <p style="font-size: 0.9em; font-weight: normal; color: #666; margin-top: 10px;">
+                        Por cada $1 que arriesgas, puedes ganar $3.
+                        <br><br>
+                        <strong>Configuración:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Take Profit: +6% del precio de entrada</li>
+                            <li>Stop Loss: -2% del precio de entrada</li>
+                            <li>Ratio: 6% / 2% = 3:1</li>
+                        </ul>
+                    </p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>🔧 Configuración en TradingView</h3>
+                    <p style="font-size: 0.9em; font-weight: normal; color: #666; margin-top: 10px;">
+                        <strong>Pasos:</strong>
+                        <ol style="margin-left: 20px; margin-top: 5px;">
+                            <li>Usa el código Pine Script actualizado</li>
+                            <li>Configura tu capital en el indicador</li>
+                            <li>Crea UNA SOLA alerta</li>
+                            <li>Deja el campo "Message" VACÍO</li>
+                            <li>El JSON se genera automáticamente</li>
+                        </ol>
+                    </p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>⚠️ Errores Comunes</h3>
+                    <p style="font-size: 0.9em; font-weight: normal; color: #666; margin-top: 10px;">
+                        <strong>Error 400:</strong> JSON mal formado o campo faltante
+                        <br>
+                        <strong>Error 500:</strong> Símbolo no válido o no disponible en Alpaca
+                        <br>
+                        <strong>Error 502:</strong> Bot no está corriendo o ngrok desconectado
+                    </p>
+                </div>
+                
+                <div class="info-box">
+                    <strong>📚 Archivos Incluidos:</strong>
+                    <ul style="margin-left: 20px; margin-top: 5px; font-size: 0.9em;">
+                        <li><code>CODIGO_PINE_20_PORCIENTO_CAPITAL.txt</code> - Código completo</li>
+                        <li><code>GUIA_20_PORCIENTO_CAPITAL.md</code> - Guía detallada</li>
+                        <li><code>EJEMPLOS_SUPERTREND_EMA9.md</code> - Ejemplos de estrategia</li>
+                        <li><code>CODIGO_PINE_CORREGIDO.txt</code> - Versión sin gestión de capital</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cambiar entre tabs
+        function switchTab(event, tabName) {
+            // Obtener el contenedor padre
+            const column = event.target.closest('.column');
+            
+            // Ocultar todos los tab-content en esta columna
+            const tabContents = column.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Desactivar todos los tabs en esta columna
+            const tabs = column.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Activar el tab seleccionado
+            event.target.classList.add('active');
+            column.querySelector('#' + tabName).classList.add('active');
+        }
+
+        // Guardar configuración
+        document.getElementById('configForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const response = await fetch('/save_config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    alert('✅ Configuración guardada correctamente');
+                    refreshStatus();
+                } else {
+                    alert('❌ Error al guardar la configuración');
+                }
+            } catch (error) {
+                alert('❌ Error: ' + error.message);
+            }
+        });
+
+        // Actualizar estado
+        async function refreshStatus() {
+            try {
+                const response = await fetch('/status');
+                const data = await response.json();
+                
+                // Actualizar estado de Alpaca
+                const alpacaStatus = document.getElementById('alpaca-status');
+                if (data.alpaca_connected) {
+                    alpacaStatus.innerHTML = '<span class="status-indicator status-active"></span>Conectado';
+                } else {
+                    alpacaStatus.innerHTML = '<span class="status-indicator status-inactive"></span>Desconectado';
+                }
+                
+                // Actualizar información de cuenta
+                const accountInfo = document.getElementById('account-info');
+                if (data.account_info) {
+                    accountInfo.innerHTML = `
+                        <strong>Capital:</strong> $${parseFloat(data.account_info.equity).toFixed(2)}<br>
+                        <strong>Efectivo:</strong> $${parseFloat(data.account_info.cash).toFixed(2)}<br>
+                        <strong>Poder de Compra:</strong> $${parseFloat(data.account_info.buying_power).toFixed(2)}
+                    `;
+                } else {
+                    accountInfo.textContent = 'No disponible';
+                }
+                
+                // Actualizar estado del mercado
+                const marketStatus = document.getElementById('market-status-display');
+                const nextEvent = document.getElementById('next-event');
+                
+                if (data.market_status) {
+                    if (data.market_status.is_open) {
+                        marketStatus.className = 'market-status market-open';
+                        marketStatus.textContent = '🟢 MERCADO ABIERTO';
+                        nextEvent.textContent = `Cierra a las ${data.market_status.next_close}`;
+                    } else {
+                        marketStatus.className = 'market-status market-closed';
+                        marketStatus.textContent = '🔴 MERCADO CERRADO';
+                        nextEvent.textContent = `Abre a las ${data.market_status.next_open}`;
+                    }
+                }
+            } catch (error) {
+                console.error('Error al actualizar estado:', error);
+            }
+        }
+
+        // Probar conexión
+        async function testConnection() {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '⏳ Probando...';
+            
+            try {
+                const response = await fetch('/test_connection');
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('✅ Conexión exitosa con Alpaca!\n\n' + 
+                          'Capital: $' + parseFloat(data.account.equity).toFixed(2));
+                } else {
+                    alert('❌ Error de conexión: ' + data.error);
+                }
+            } catch (error) {
+                alert('❌ Error: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🧪 Probar Conexión';
+            }
+        }
+
+        // Probar webhook
+        async function testWebhook() {
+            const jsonText = document.getElementById('test-json').value;
+            const responseDiv = document.getElementById('response');
+            
+            try {
+                const json = JSON.parse(jsonText);
+                
+                const response = await fetch('/webhook', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(json)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    responseDiv.className = 'success';
+                    responseDiv.textContent = '✅ ¡Webhook Recibido Correctamente! ' + data.message;
+                } else {
+                    responseDiv.className = 'error';
+                    responseDiv.textContent = '❌ Error: ' + data.error;
+                }
+            } catch (error) {
+                responseDiv.className = 'error';
+                responseDiv.textContent = '❌ JSON inválido: ' + error.message;
+            }
+        }
+
+        // Cargar ejemplo
+        function loadExample() {
+            const example = {
+                "secret": "tu_secreto_webhook",
+                "action": "buy",
+                "symbol": "AAPL",
+                "quantity": 13,
+                "order_type": "market",
+                "take_profit": 159.00,
+                "stop_loss": 147.00
+            };
+            document.getElementById('test-json').value = JSON.stringify(example, null, 2);
+        }
+
+        // Copiar al portapapeles
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Copiado al portapapeles');
+            });
+        }
+
+        // Copiar código
+        function copyCode(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                event.target.textContent = '✅ Copiado';
+                setTimeout(() => {
+                    event.target.textContent = '📋 Copiar';
+                }, 2000);
+            });
+        }
+
+        // Actualizar historial de órdenes
+        async function refreshOrders() {
+            try {
+                const response = await fetch('/orders');
+                const data = await response.json();
+                
+                const container = document.getElementById('orderLogContainer');
+                
+                if (data.orders && data.orders.length > 0) {
+                    container.innerHTML = data.orders.map(order => {
+                        const timestamp = new Date(order.timestamp).toLocaleString('es-ES', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit'
+                        });
+                        
+                        const statusClass = order.status === 'success' ? 'order-success' : 
+                                          order.status === 'error' ? 'order-error' : 'order-pending';
+                        
+                        let detailsHTML = `
+                            <div class="order-detail">
+                                <span class="order-detail-label">Símbolo:</span>
+                                <span>${order.symbol}</span>
+                            </div>
+                            <div class="order-detail">
+                                <span class="order-detail-label">Cantidad:</span>
+                                <span>${order.quantity}</span>
+                            </div>
+                            <div class="order-detail">
+                                <span class="order-detail-label">Tipo:</span>
+                                <span>${order.order_type}</span>
+                            </div>
+                            <div class="order-detail">
+                                <span class="order-detail-label">Estado:</span>
+                                <span class="order-status ${order.status}">${order.status}</span>
+                            </div>
+                        `;
+                        
+                        if (order.limit_price) {
+                            detailsHTML += `
+                                <div class="order-detail">
+                                    <span class="order-detail-label">Precio Límite:</span>
+                                    <span>$${parseFloat(order.limit_price).toFixed(2)}</span>
+                                </div>
+                            `;
+                        }
+                        
+                        if (order.take_profit) {
+                            detailsHTML += `
+                                <div class="order-detail">
+                                    <span class="order-detail-label">Take Profit:</span>
+                                    <span>$${parseFloat(order.take_profit).toFixed(2)}</span>
+                                </div>
+                            `;
+                        }
+                        
+                        if (order.stop_loss) {
+                            detailsHTML += `
+                                <div class="order-detail">
+                                    <span class="order-detail-label">Stop Loss:</span>
+                                    <span>$${parseFloat(order.stop_loss).toFixed(2)}</span>
+                                </div>
+                            `;
+                        }
+                        
+                        if (order.details && order.details.order_id) {
+                            detailsHTML += `
+                                <div class="order-detail" style="grid-column: 1 / -1;">
+                                    <span class="order-detail-label">Order ID:</span>
+                                    <span style="font-size: 0.75em; font-family: monospace;">${order.details.order_id}</span>
+                                </div>
+                            `;
+                        }
+                        
+                        if (order.details && order.details.error) {
+                            detailsHTML += `
+                                <div class="order-detail" style="grid-column: 1 / -1;">
+                                    <span class="order-detail-label">Error:</span>
+                                    <span style="color: #dc3545; font-size: 0.85em;">${order.details.error}</span>
+                                </div>
+                            `;
+                        }
+                        
+                        return `
+                            <div class="order-item ${statusClass}">
+                                <div class="order-header">
+                                    <span class="order-action ${order.action}">${order.action === 'buy' ? '🟢 BUY' : '🔴 SELL'}</span>
+                                    <span class="order-timestamp">${timestamp}</span>
+                                </div>
+                                <div class="order-details">
+                                    ${detailsHTML}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    container.innerHTML = `
+                        <div class="order-log-empty">
+                            <p>📄 No hay órdenes registradas aún</p>
+                            <p style="font-size: 0.85em; color: #888; margin-top: 5px;">Las órdenes aparecerán aquí cuando se reciban webhooks de TradingView</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error al actualizar historial de órdenes:', error);
+            }
+        }
+        
+        // Actualizar estado al cargar la página
+        refreshStatus();
+        refreshOrders();
+        
+        // Actualizar estado cada 30 segundos
+        setInterval(refreshStatus, 30000);
+        
+        // Actualizar historial de órdenes cada 10 segundos
+        setInterval(refreshOrders, 10000);
+    </script>
+</body>
+</html>
